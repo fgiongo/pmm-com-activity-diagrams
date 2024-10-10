@@ -1,0 +1,24 @@
+@startuml
+start
+:Rotina principal;
+
+-[#black,dashed]-> [Interrupt] RX FIFO Interrupt;
+
+partition "Rotina de interrupt" {
+    if (RX_FIFO_STANDBY está cheia?) then (Sim)
+        :Lidar com fila cheia;
+        note left
+            Isso vai depender do
+            modo de interrupt usado
+        end note
+    else (Não)
+        repeat
+            :Copia mensagem de RX_FIFO
+            :para fila RX_FIFO_STANDBY;
+        repeat while (Há mais mensagens em RX_FIFO?) is (    Sim) not (Não)
+    endif
+}
+-[#black,dashed]->
+:Retorno à rotina principal;
+stop
+@enduml
