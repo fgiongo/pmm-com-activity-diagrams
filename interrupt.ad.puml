@@ -14,7 +14,7 @@ partition "Rotina de interrupt" {
     else (Não)
         repeat
             :Copia mensagem de RX_FIFO
-            :para fila RX_FIFO_STANDBY;
+            para fila RX_FIFO_STANDBY;
         repeat while (Há mais mensagens em RX_FIFO?) is (    Sim) not (Não)
     endif
 }
